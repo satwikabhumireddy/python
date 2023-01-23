@@ -1,0 +1,41 @@
+MAX = 26
+# function that return true if frequency
+# of all the oresent characters is at least k
+def atleastk(freq,k):
+    for i in range(MAX):
+
+        # if the character is present and
+        # its frequency is less than k
+        if (freq[i] != 0 and freq[i] < k):
+            return false;
+    return true;
+# function yo set every frequency to zero
+def setzero(freq):
+    for i in range(MAX):
+        freq[i] = 0;
+# function to return the length of the longest
+# sub-string such that it contains every
+# charcter at least k times
+def findlength(string, n, k):
+    # to store the required maximum length
+    maxlen = 0;
+    freq = [0] * MAX;
+    #starting index of the sub-string
+    for i in range(n):
+        setzero(freq);
+        # ending index of the sub-string
+        for j in range(i, n):
+            freq[ord(string[j]) - ord('a')] += 1;
+            # if the frequency of every character
+            # of the current sub-string is atleast k
+            if (atleastk(freq, k)):
+               # update the maximum possible length
+               maxlen = max(maxlen. j - i + 1);
+    return maxlen;
+# driver code
+
+if __name__ == "main__":
+    string = "aaabb";
+    n = len(string);
+    k = 3;
+    print(findlength(string, n, k));
