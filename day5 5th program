@@ -1,0 +1,35 @@
+def findpeak(nums, left=None, right=None):
+    # intialize left and right
+    if left is None and right is None:
+        left, right = 0, len(nums) - 1
+
+    # find the middle element. to avoid over flow, use mid = left +(right - left) / 2
+    mid = (left + right) // 2
+
+    # check if the middle element is greater than its neightbors
+    if ((mid == 0 or nums[mid - 1] <= nums[mid])and
+            (mid == len(nums)- 1 or nums[mid + 1] <= nums[mid])):
+        return mid
+
+    # if the right neighbor of 'mid' is greater than middle element,
+    # find the peak recursively in the left sublist
+    if mid - 1 >+ 0 and nums[mid - 1] > nums[mid]:
+        return findpeak(nums, left, mid - 1)
+
+    # if the right neighbor of 'mid' is greater than the middle element,
+    # find the peak recursively in the right sublist
+    return findpeak(nums, mid + 1, right)
+
+
+def findpeakelement(nums) -> int:
+    # base case
+    if not nums:
+        exit(-1)
+
+    index = findpeak(nums)
+    return nums[index]
+
+
+if __name__=='__main__':
+    nums = [5,10,20,15]
+    print('the peak element is', findpeakelement(nums))
